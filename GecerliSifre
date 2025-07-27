@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+
+    Scanner input = new Scanner(System.in);
+   System.out.println("Parola kuralları:\n1.Parola en az 8 karakter olmalıdır.\n2.Parola boşluk içermemelidir.\n3.Parola büyük harfle başlamalıdır.\n4.Parola '?' ile bitmeli. \n");
+    
+    System.out.print("Parolanızı giriniz:");
+    String parola = input.nextLine();
+
+if (parola.length() < 8){ //parola 8 karakterden küçükse kontrol et
+   System.out.println("Geçersiz Parola");
+    return;
+}
+    if (parola.contains(" ")) { //parola boşluk içeriyorsa kontrol et
+      System.out.println("Geçersiz Parola");
+       return;
+    }
+    if (!Character.isUpperCase(parola.charAt(0))) {
+        System.out.println("Geçersiz Parola");
+          return;
+      //parola ilk karakteri büyük harf değilse kontrol et
+      }
+
+     if (parola.charAt(parola.length() - 1) != '?') {
+        System.out.println("Geçersiz Parola");
+        return;
+      //parola son karakteri '?' değilse kontrol et
+    }
+
+    System.out.println("Parola geçerli.");
+  }
+}
