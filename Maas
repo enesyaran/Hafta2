@@ -1,0 +1,100 @@
+package Hafta2;
+
+public class Kutuphane {
+    public static class Employee {
+        String name;
+        double salary;
+        int workHours;
+        int hireYear;
+
+
+        public Employee(String name, double salary, int workHours, int hireYear) {
+            this.name = name;
+            this.salary = salary;
+            this.workHours = workHours;
+            this.hireYear = hireYear;
+        }
+
+        public double tax() {
+            if (this.salary < 1000) {
+                return 0;
+            } else {
+                return this.salary * 0.03;
+
+            }
+
+        }
+
+        public double bonus() {
+            if (this.workHours < 41) {
+                return 0;
+
+            } else {
+                return (this.workHours - 40) * 30;
+            }
+        }
+
+        public double raiseSalary() {
+            int CurrentYear = 2021;
+            int YearWorked = CurrentYear - this.hireYear;
+            if (YearWorked < 10) {
+                return this.salary * 0.05;
+            } else if (YearWorked < 20) {
+                return this.salary * 0.1;
+            } else {
+                return this.salary * 0.15;
+            }
+        }
+            public String toString () {
+                double tax = tax();
+                double bonus = bonus();
+                double raise = raiseSalary();
+                double salaryWithBonusAndTax = this.salary - tax + bonus;
+                double totalSalary = this.salary + raise - tax + bonus;
+
+                return "Adı: " + this.name +
+                        "\nMaaşı: " + this.salary +
+                        "\nÇalışma Saati: " + this.workHours +
+                        "\nBaşlangıç Yılı: " + this.hireYear +
+                        "\nVergi: " + tax +
+                        "\nBonus: " + bonus +
+                        "\nMaaş Artışı: " + raise +
+                        "\nVergi ve Bonuslarla Maaş: " + salaryWithBonusAndTax +
+                        "\nToplam Maaş (Zamlı): " + totalSalary;
+            }
+
+    }
+}
+
+// Çalıştırılan kod bloğu
+
+package Hafta2;
+
+import java.util.Scanner;
+
+public class Maas {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Çalışanın adını girin: ");
+        String name = scanner.next();
+
+        System.out.print("Maaşı girin: ");
+        double salary = scanner.nextDouble();
+
+        System.out.print("Haftalık çalışma saatini girin: ");
+        int workHours = scanner.nextInt();
+
+
+        System.out.print("İşe başlangıç yılını girin: ");
+        int hireYear = scanner.nextInt();
+        ;
+
+        Kutuphane.Employee emp = new Kutuphane.Employee(name, salary, workHours, hireYear);
+
+        System.out.println("\n--- Çalışan Bilgileri ---");
+        System.out.println(emp.toString());
+
+        scanner.close();
+    }
+}
